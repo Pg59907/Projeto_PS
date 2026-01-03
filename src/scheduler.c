@@ -18,26 +18,18 @@ int compare_tasks(const void *a, const void *b) {
 
 int main(int argc, char *argv[]) {
     // VALIDAÇÃO DOS ARGUMENTOS PASSADOS PELO UTILIZADOR
-    if (argc < 3 || argc > 4) {
+    if (argc < 2 || argc > 4) {
         printf("O programa deve ser executado desta forma: ./scheduler <num_tasks> <num_parallel> [sjf]\n");
         return 1;
     }
 
     // CONVERSÃO DO ARGUMENTO PASSADO PELO UTILIZADOR NO TERMINAL PARA int
     int num_tasks = atoi(argv[1]);
-    int num_parallel = atoi(argv[2]);
 
     // VALIDAÇÃO DO num_tasks COMO VALORES POSITIVOS
     if (num_tasks <= 0) {
         printf("Erro: num_tasks deve ser positivo.\n");
         return 1;
-    }
-
-    //scheduling method
-    int use_sjf = 0;//FCFS default
-
-    if (argc == 4 && strcmp(argv[3], "sjf") == 0) {
-        use_sjf = 1;
     }
 
     // ALOCAÇÃO DE MEMÓRIA PARA AS TAREFAS E VALIDAÇÃO
@@ -46,6 +38,36 @@ int main(int argc, char *argv[]) {
         perror("Erro ao alocar memória para as tarefas.");
         return 1;
     }
+
+    int num_parallel = 0;
+    int use_sjf = 0;        // FCFS default
+
+    for (int i = 2; i < argc; i++) {
+
+        if (strcmp(argv[i], "sjf") == 0) {
+            use_sjf = 1;
+        }
+        else {
+            int value = atoi(argv[i]);
+
+            if (value <= 0) {
+                printf("Erro: argumento inválido '%s'\n", argv[i]);
+                return 1;
+            }
+
+            if (num_parallel != 0) {
+                printf("Erro: num_parallel especificado mais de uma vez.\n");
+                return 1;
+            }
+
+            num_parallel = value;
+        }
+    }
+
+    if (num_parallel == 0) {
+        num_parallel = 1;
+    }
+
 
     // CICLO PARA LEITURA DOS FICHEIROS BINÁRIOS ESCRITOS PELO PROGRAMA prepare
     for (int i = 0; i < num_tasks; i++) {
