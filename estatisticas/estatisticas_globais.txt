@@ -1,16 +1,16 @@
 
 --- Sem otimizações (FCFS sequencial) ---
 Total Tarefas Executadas: 5
-Turnaround Time Médio: 6 segundos
+Turnaround Time Médio: 5.40 segundos
 
 --- Otimização 1 (FCFS paralelo) ---
 Total Tarefas Executadas: 5
-Turnaround Time Médio: 2 segundos
+Turnaround Time Médio: 2.20 segundos
 
 --- Otimização 2 (SJF sequencial) ---
 Total Tarefas Executadas: 5
-Turnaround Time Médio: 6 segundos
+Turnaround Time Médio: 5.60 segundos
 
 --- Otimizações 1 e 2 (SJF paralelo) ---
 Total Tarefas Executadas: 5
-Turnaround Time Médio: 3 segundos
+Turnaround Time Médio: 2.80 segundos

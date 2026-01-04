@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
 
     // ESCRITA DAS ESTATÍSTICAS GLOBAIS NO FICHEIRO
     char buf[1024];
-    int len = sprintf(buf, "\n--- %s ---\nTotal Tarefas Executadas: %d\nTurnaround Time Médio: %.0f segundos\n", modo_execucao, num_tasks, turnaround_medio);
+    int len = sprintf(buf, "\n--- %s ---\nTotal Tarefas Executadas: %d\nTurnaround Time Médio: %.2f segundos\n", modo_execucao, num_tasks, turnaround_medio);
     
     ssize_t res = write(fd, buf, len);
     if (res != len) {
@@ -171,7 +171,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("\n");
-    printf("Ficheiro 'estatisticas_globais' criado com sucesso.\n");
+    printf("Ficheiro 'estatisticas_globais' atualizado com sucesso.\n");
 
     close(fd);
     free(tarefas);
